@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <!-- hanya 1 DataNode, replikasi 3 tidak bermakna -->
+  <property><name>dfs.replication</name><value>1</value></property>
+  <property><name>dfs.namenode.name.dir</name><value>file:///Users/axelnakata/pnwml-data/hadoop-data/namenode</value></property>
+  <property><name>dfs.datanode.data.dir</name><value>file:///Users/axelnakata/pnwml-data/hadoop-data/datanode</value></property>
+  <property><name>dfs.permissions.enabled</name><value>true</value></property>
+  <property><name>dfs.webhdfs.enabled</name><value>true</value></property>
+  <!-- WebHDFS redirect ke DataNode memakai localhost, bukan hostname Mac -->
+  <property><name>dfs.datanode.hostname</name><value>localhost</value></property>
+  <property><name>dfs.client.use.datanode.hostname</name><value>true</value></property>
+</configuration>

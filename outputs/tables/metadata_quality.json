@@ -1,0 +1,211 @@
+{
+ "generated_by": "notebooks/03_cleaning_quality.ipynb",
+ "raw_rows": {
+  "comcat": 178939,
+  "exotic": 9267,
+  "noise": 51017
+ },
+ "clean_rows": {
+  "comcat": 178839,
+  "exotic": 8912,
+  "noise": 50227
+ },
+ "funnel": [
+  {
+   "step": "R0",
+   "description": "Raw (3 CSV digabung)",
+   "comcat": 178939,
+   "exotic": 9267,
+   "noise": 51017,
+   "comcat_dropped": 0,
+   "exotic_dropped": 0,
+   "noise_dropped": 0,
+   "total": 239223
+  },
+  {
+   "step": "R3",
+   "description": "ComCat: buang label PNSN di luar earthquake/explosion (su, sn, uk, qb)",
+   "comcat": 178839,
+   "exotic": 9267,
+   "noise": 51017,
+   "comcat_dropped": 100,
+   "exotic_dropped": 0,
+   "noise_dropped": 0,
+   "total": 239123
+  },
+  {
+   "step": "R4",
+   "description": "Exotic: buang sonic boom, thunder, plane crash",
+   "comcat": 178839,
+   "exotic": 8912,
+   "noise": 51017,
+   "comcat_dropped": 0,
+   "exotic_dropped": 355,
+   "noise_dropped": 0,
+   "total": 238768
+  },
+  {
+   "step": "R5",
+   "description": "Buang semua baris dengan trace_name duplikat (noise: 395 pasangan)",
+   "comcat": 178839,
+   "exotic": 8912,
+   "noise": 50227,
+   "comcat_dropped": 0,
+   "exotic_dropped": 0,
+   "noise_dropped": 790,
+   "total": 237978
+  },
+  {
+   "step": "R6",
+   "description": "Validasi (sampling rate, jumlah sampel, pointer HDF5, SNR) \u2014 0 pelanggaran, tidak ada yang dibuang",
+   "comcat": 178839,
+   "exotic": 8912,
+   "noise": 50227,
+   "comcat_dropped": 0,
+   "exotic_dropped": 0,
+   "noise_dropped": 0,
+   "total": 237978
+  }
+ ],
+ "label_cases": [
+  {
+   "label_case": "consistent",
+   "rows": 161964,
+   "events": 39385
+  },
+  {
+   "label_case": "dropped",
+   "rows": 100,
+   "events": 31
+  },
+  {
+   "label_case": "mapping_only",
+   "rows": 16508,
+   "events": 6558
+  },
+  {
+   "label_case": "relabeled",
+   "rows": 367,
+   "events": 80
+  }
+ ],
+ "validity": [
+  {
+   "check": "sampling_rate != 100 Hz",
+   "comcat": 0,
+   "exotic": 0,
+   "noise": 0
+  },
+  {
+   "check": "n_samples != expected (15001/18001)",
+   "comcat": 0,
+   "exotic": 0,
+   "noise": 0
+  },
+  {
+   "check": "n_samples != HDF5 array length",
+   "comcat": 0,
+   "exotic": 0,
+   "noise": 0
+  },
+  {
+   "check": "bucket not found in HDF5",
+   "comcat": 0,
+   "exotic": 0,
+   "noise": 0
+  },
+  {
+   "check": "row >= bucket size (pointer out of range)",
+   "comcat": 0,
+   "exotic": 0,
+   "noise": 0
+  },
+  {
+   "check": "SNR above 80 dB",
+   "comcat": 0,
+   "exotic": 0,
+   "noise": 0
+  },
+  {
+   "check": "SNR below -20 dB",
+   "comcat": 0,
+   "exotic": 0,
+   "noise": 0
+  },
+  {
+   "check": "trace_start_time is NULL",
+   "comcat": 0,
+   "exotic": 0,
+   "noise": 0
+  }
+ ],
+ "orphans": [
+  {
+   "dataset": "comcat",
+   "hdf5_traces": 187053,
+   "orphans_before": 8114,
+   "orphans_after": 8214,
+   "readme_removed_nov2025": 4970,
+   "unexplained": 3144
+  },
+  {
+   "dataset": "exotic",
+   "hdf5_traces": 9517,
+   "orphans_before": 250,
+   "orphans_after": 605,
+   "readme_removed_nov2025": 0,
+   "unexplained": 250
+  },
+  {
+   "dataset": "noise",
+   "hdf5_traces": 51462,
+   "orphans_before": 840,
+   "orphans_after": 1235,
+   "readme_removed_nov2025": 445,
+   "unexplained": 395
+  }
+ ],
+ "flags": [
+  {
+   "dataset": "comcat",
+   "flag_has_offset": 1534.0,
+   "flag_missing_channel": 53453.0
+  },
+  {
+   "dataset": "exotic",
+   "flag_has_offset": NaN,
+   "flag_missing_channel": NaN
+  },
+  {
+   "dataset": "noise",
+   "flag_has_offset": NaN,
+   "flag_missing_channel": NaN
+  }
+ ],
+ "class_distribution": [
+  {
+   "dataset": "comcat",
+   "label": "earthquake",
+   "count": 162700,
+   "pct_of_total": 68.37
+  },
+  {
+   "dataset": "comcat",
+   "label": "explosion",
+   "count": 16139,
+   "pct_of_total": 6.78
+  },
+  {
+   "dataset": "exotic",
+   "label": "surface_event",
+   "count": 8912,
+   "pct_of_total": 3.74
+  },
+  {
+   "dataset": "noise",
+   "label": "noise",
+   "count": 50227,
+   "pct_of_total": 21.11
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "panel": "(a) Gempa bumi",
+    "dataset": "comcat",
+    "trace_name": "bucket8$8086,:3,:15001",
+    "event_id": "uw60733091",
+    "source_type": "earthquake",
+    "station": "PB.B005.EH",
+    "component_order": "ENZ",
+    "n_samples": 15001
+  },
+  {
+    "panel": "(b) Ledakan",
+    "dataset": "comcat",
+    "trace_name": "bucket5$7647,:3,:15001",
+    "event_id": "uw60725651",
+    "source_type": "explosion",
+    "station": "PB.B024.EH",
+    "component_order": "ENZ",
+    "n_samples": 15001
+  },
+  {
+    "panel": "(c) Peristiwa permukaan",
+    "dataset": "exotic",
+    "trace_name": "bucket1$1139,:3,:18001",
+    "event_id": "pnsn3116683",
+    "source_type": "surface event",
+    "station": "UW.SHW.EH",
+    "component_order": "ENZ",
+    "n_samples": 18001
+  },
+  {
+    "panel": "(d) Noise",
+    "dataset": "noise",
+    "trace_name": "bucket8$2808,:3,:15001",
+    "event_id": "None",
+    "source_type": "noise",
+    "station": "PB.B204.EH",
+    "component_order": "ENZ",
+    "n_samples": 15001
+  }
+]

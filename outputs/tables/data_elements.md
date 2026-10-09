@@ -1,0 +1,10 @@
+# Elemen data & klasifikasi format
+
+| element               | physical format                                                | category                | why                                                                                                                                         |
+|:----------------------|:---------------------------------------------------------------|:------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
+| Metadata CSV (3 file) | CSV teks, tabel baris × kolom, header                          | Structured              | Skema tetap: setiap baris = 1 rekaman, setiap kolom punya nama & tipe. Langsung bisa di-query SQL/Spark                                     |
+| trace_snr_db          | String "E|N|Z" di dalam kolom CSV                              | Semi-structured         | Satu sel berisi list 3 angka dengan pemisah sendiri → harus di-parse jadi 3 kolom                                                           |
+| trace_name            | String "bucketK$row,:3,:n" di dalam kolom CSV                  | Semi-structured         | Pointer berpola (mini-bahasa slicing NumPy) ke lokasi waveform di HDF5                                                                      |
+| HDF5 container        | Binary, hierarkis (group /data, /data_format), self-describing | Semi-structured (wadah) | Punya struktur pohon & atribut (dtype, shape, component_order), tapi bukan tabel                                                            |
+| Waveform (isi HDF5)   | Array float64 (N, 3, 15001|18001) — deret waktu 100 Hz         | Unstructured            | 45,003 angka per rekaman tanpa arti per-kolom; informasi (gempa/ledakan) harus diekstrak dengan pemrosesan sinyal/ML. ±86 GB = 99.9% volume |
+| lineage.jsonl         | JSON Lines (1 objek JSON per baris)                            | Semi-structured         | Key-value dengan skema fleksibel; dibuat oleh pipeline kita untuk jejak asal-usul                                                           |

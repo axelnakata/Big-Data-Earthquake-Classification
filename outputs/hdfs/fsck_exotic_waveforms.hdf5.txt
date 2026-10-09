@@ -1,0 +1,74 @@
+FSCK started by axelnakata (auth:SIMPLE) from /127.0.0.1 for path /datalake/raw/exotic/exotic_waveforms.hdf5 at Wed Sep 23 05:29:58 WIB 2026
+
+/datalake/raw/exotic/exotic_waveforms.hdf5 4111581160 bytes, replicated: replication=1, 31 block(s):  OK
+0. BP-96604845-192.168.100.2-1790115507935:blk_1073741833_1009 len=134217728 Live_repl=1
+1. BP-96604845-192.168.100.2-1790115507935:blk_1073741834_1010 len=134217728 Live_repl=1
+2. BP-96604845-192.168.100.2-1790115507935:blk_1073741835_1011 len=134217728 Live_repl=1
+3. BP-96604845-192.168.100.2-1790115507935:blk_1073741836_1012 len=134217728 Live_repl=1
+4. BP-96604845-192.168.100.2-1790115507935:blk_1073741837_1013 len=134217728 Live_repl=1
+5. BP-96604845-192.168.100.2-1790115507935:blk_1073741838_1014 len=134217728 Live_repl=1
+6. BP-96604845-192.168.100.2-1790115507935:blk_1073741839_1015 len=134217728 Live_repl=1
+7. BP-96604845-192.168.100.2-1790115507935:blk_1073741840_1016 len=134217728 Live_repl=1
+8. BP-96604845-192.168.100.2-1790115507935:blk_1073741841_1017 len=134217728 Live_repl=1
+9. BP-96604845-192.168.100.2-1790115507935:blk_1073741842_1018 len=134217728 Live_repl=1
+10. BP-96604845-192.168.100.2-1790115507935:blk_1073741843_1019 len=134217728 Live_repl=1
+11. BP-96604845-192.168.100.2-1790115507935:blk_1073741844_1020 len=134217728 Live_repl=1
+12. BP-96604845-192.168.100.2-1790115507935:blk_1073741845_1021 len=134217728 Live_repl=1
+13. BP-96604845-192.168.100.2-1790115507935:blk_1073741846_1022 len=134217728 Live_repl=1
+14. BP-96604845-192.168.100.2-1790115507935:blk_1073741847_1023 len=134217728 Live_repl=1
+15. BP-96604845-192.168.100.2-1790115507935:blk_1073741848_1024 len=134217728 Live_repl=1
+16. BP-96604845-192.168.100.2-1790115507935:blk_1073741849_1025 len=134217728 Live_repl=1
+17. BP-96604845-192.168.100.2-1790115507935:blk_1073741850_1026 len=134217728 Live_repl=1
+18. BP-96604845-192.168.100.2-1790115507935:blk_1073741851_1027 len=134217728 Live_repl=1
+19. BP-96604845-192.168.100.2-1790115507935:blk_1073741852_1028 len=134217728 Live_repl=1
+20. BP-96604845-192.168.100.2-1790115507935:blk_1073741853_1029 len=134217728 Live_repl=1
+21. BP-96604845-192.168.100.2-1790115507935:blk_1073741854_1030 len=134217728 Live_repl=1
+22. BP-96604845-192.168.100.2-1790115507935:blk_1073741855_1031 len=134217728 Live_repl=1
+23. BP-96604845-192.168.100.2-1790115507935:blk_1073741856_1032 len=134217728 Live_repl=1
+24. BP-96604845-192.168.100.2-1790115507935:blk_1073741857_1033 len=134217728 Live_repl=1
+25. BP-96604845-192.168.100.2-1790115507935:blk_1073741858_1034 len=134217728 Live_repl=1
+26. BP-96604845-192.168.100.2-1790115507935:blk_1073741859_1035 len=134217728 Live_repl=1
+27. BP-96604845-192.168.100.2-1790115507935:blk_1073741860_1036 len=134217728 Live_repl=1
+28. BP-96604845-192.168.100.2-1790115507935:blk_1073741861_1037 len=134217728 Live_repl=1
+29. BP-96604845-192.168.100.2-1790115507935:blk_1073741862_1038 len=134217728 Live_repl=1
+30. BP-96604845-192.168.100.2-1790115507935:blk_1073741863_1039 len=85049320 Live_repl=1
+
+
+Status: HEALTHY
+ Number of data-nodes:	1
+ Number of racks:		1
+ Total dirs:			0
+ Total symlinks:		0
+
+Replicated Blocks:
+ Total size:	4111581160 B
+ Total files:	1
+ Total blocks (validated):	31 (avg. block size 132631650 B)
+ Minimally replicated blocks:	31 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	0 (0.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	1
+ Average block replication:	1.0
+ Missing blocks:		0
+ Corrupt blocks:		0
+ Missing replicas:		0 (0.0 %)
+ Blocks queued for replication:	0
+
+Erasure Coded Block Groups:
+ Total size:	0 B
+ Total files:	0
+ Total block groups (validated):	0
+ Minimally erasure-coded block groups:	0
+ Over-erasure-coded block groups:	0
+ Under-erasure-coded block groups:	0
+ Unsatisfactory placement block groups:	0
+ Average block group size:	0.0
+ Missing block groups:		0
+ Corrupt block groups:		0
+ Missing internal blocks:	0
+ Blocks queued for replication:	0
+FSCK ended at Wed Sep 23 05:29:58 WIB 2026 in 1 milliseconds
+
+
+The filesystem under path '/datalake/raw/exotic/exotic_waveforms.hdf5' is HEALTHY

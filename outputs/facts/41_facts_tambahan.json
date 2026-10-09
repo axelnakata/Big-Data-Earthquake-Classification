@@ -1,0 +1,294 @@
+{
+  "A_inventaris": {
+    "files": [
+      {
+        "dataset": "comcat",
+        "file": "comcat_metadata.csv",
+        "hdfs_path": "/datalake/raw/comcat/comcat_metadata.csv",
+        "bytes": 50025733,
+        "MB": 50.03,
+        "GB": 0.05,
+        "hdfs_blocks": 1,
+        "format": "CSV",
+        "data_type": "terstruktur"
+      },
+      {
+        "dataset": "comcat",
+        "file": "comcat_waveforms.hdf5",
+        "hdfs_path": "/datalake/raw/comcat/comcat_waveforms.hdf5",
+        "bytes": 67343580072,
+        "MB": 67343.58,
+        "GB": 67.34,
+        "hdfs_blocks": 502,
+        "format": "HDF5",
+        "data_type": "tidak terstruktur (wadah semi-structured)"
+      },
+      {
+        "dataset": "exotic",
+        "file": "exotic_metadata.csv",
+        "hdfs_path": "/datalake/raw/exotic/exotic_metadata.csv",
+        "bytes": 1476207,
+        "MB": 1.48,
+        "GB": 0.0,
+        "hdfs_blocks": 1,
+        "format": "CSV",
+        "data_type": "terstruktur"
+      },
+      {
+        "dataset": "exotic",
+        "file": "exotic_waveforms.hdf5",
+        "hdfs_path": "/datalake/raw/exotic/exotic_waveforms.hdf5",
+        "bytes": 4111581160,
+        "MB": 4111.58,
+        "GB": 4.11,
+        "hdfs_blocks": 31,
+        "format": "HDF5",
+        "data_type": "tidak terstruktur (wadah semi-structured)"
+      },
+      {
+        "dataset": "noise",
+        "file": "noise_metadata.csv",
+        "hdfs_path": "/datalake/raw/noise/noise_metadata.csv",
+        "bytes": 5028650,
+        "MB": 5.03,
+        "GB": 0.01,
+        "hdfs_blocks": 1,
+        "format": "CSV",
+        "data_type": "terstruktur"
+      },
+      {
+        "dataset": "noise",
+        "file": "noise_waveforms.hdf5",
+        "hdfs_path": "/datalake/raw/noise/noise_waveforms.hdf5",
+        "bytes": 18527565888,
+        "MB": 18527.57,
+        "GB": 18.53,
+        "hdfs_blocks": 139,
+        "format": "HDF5",
+        "data_type": "tidak terstruktur (wadah semi-structured)"
+      }
+    ],
+    "total_bytes": 90039257710,
+    "total_GB": 90.04,
+    "total_blocks": 675
+  },
+  "D_relasi_csv_hdf5": {
+    "examples": [
+      {
+        "dataset": "comcat",
+        "trace_name": "bucket4$0,:3,:15001",
+        "event_id": "uw10564613",
+        "source_type": "earthquake",
+        "station": "UW.GNW.BH",
+        "trace_start_time": "2002-10-03 01:55:59.530000",
+        "bucket": "bucket4",
+        "row_index": 0,
+        "n_components": 3,
+        "n_samples": 15001,
+        "shape_read": [
+          3,
+          15001
+        ],
+        "first5_E": [
+          0.5091831909608298,
+          0.6786078915825174,
+          0.2846673092006115,
+          -0.6236455891319602,
+          -1.6822251549720657
+        ],
+        "first5_N": [
+          0.029425143384296578,
+          0.11583655057516862,
+          0.3679877594283479,
+          1.0909953463533428,
+          2.4865200994885845
+        ],
+        "first5_Z": [
+          -2.49244943156216,
+          -5.121838093715379,
+          -7.725260119009347,
+          -9.30418606176576,
+          -9.450233540132588
+        ],
+        "P_arrival_sample": 6733,
+        "P_arrival_seconds": 67.33
+      },
+      {
+        "dataset": "exotic",
+        "trace_name": "bucket1$0,:3,:18001",
+        "event_id": "pnsn3179368",
+        "source_type": "surface event",
+        "station": "UW.RCM.HH",
+        "trace_start_time": "2021-12-22 04:48:25",
+        "bucket": "bucket1",
+        "row_index": 0,
+        "n_components": 3,
+        "n_samples": 18001,
+        "shape_read": [
+          3,
+          18001
+        ],
+        "first5_E": [
+          -1523.4941065860687,
+          -1469.9935337385275,
+          -1471.497941192894,
+          -1474.4976964498558,
+          -1476.749331467482
+        ],
+        "first5_N": [
+          240.51226418853992,
+          332.00974166002584,
+          341.75445784741396,
+          348.25507493684745,
+          341.00246245695513
+        ],
+        "first5_Z": [
+          933.5010322745887,
+          931.7504261610571,
+          927.9992963031733,
+          933.0004768675561,
+          936.5003139937963
+        ],
+        "P_arrival_sample": 7000,
+        "P_arrival_seconds": 70.0
+      },
+      {
+        "dataset": "noise",
+        "trace_name": "bucket1$0,:3,:15001",
+        "event_id": "None",
+        "source_type": "noise",
+        "station": "UW.TTW.BH",
+        "trace_start_time": "2002-09-21 00:50:20.960000",
+        "bucket": "bucket1",
+        "row_index": 0,
+        "n_components": 3,
+        "n_samples": 15001,
+        "shape_read": [
+          3,
+          15001
+        ],
+        "first5_E": [
+          31.241114311104806,
+          62.74803986563505,
+          91.25121842313898,
+          102.3221440004113,
+          87.98800221410663
+        ],
+        "first5_N": [
+          10.73142585421538,
+          22.954350118405156,
+          37.198498282604426,
+          45.88307459990419,
+          49.38766009054558
+        ],
+        "first5_Z": [
+          22.473589301174208,
+          55.37950703005349,
+          104.45838993395977,
+          158.00310443113335,
+          202.44016290577122
+        ],
+        "P_arrival_sample": null,
+        "P_arrival_seconds": null
+      }
+    ],
+    "match": [
+      {
+        "dataset": "comcat",
+        "metadata_rows_clean": 178839,
+        "rows_pointing_to_existing_waveform": 178839,
+        "rows_pointing_to_missing_waveform": 0,
+        "trace_name_referenced_by_gt1_row": 0
+      },
+      {
+        "dataset": "exotic",
+        "metadata_rows_clean": 8912,
+        "rows_pointing_to_existing_waveform": 8912,
+        "rows_pointing_to_missing_waveform": 0,
+        "trace_name_referenced_by_gt1_row": 0
+      },
+      {
+        "dataset": "noise",
+        "metadata_rows_clean": 50227,
+        "rows_pointing_to_existing_waveform": 50227,
+        "rows_pointing_to_missing_waveform": 0,
+        "trace_name_referenced_by_gt1_row": 0
+      }
+    ]
+  },
+  "E_batas_arrival": [
+    {
+      "dataset": "comcat",
+      "P_arrival_out_of_bounds": 0,
+      "S_arrival_out_of_bounds": 0
+    },
+    {
+      "dataset": "exotic",
+      "P_arrival_out_of_bounds": 0,
+      "S_arrival_out_of_bounds": 0
+    }
+  ],
+  "F_organisasi": {
+    "metadata_columns_total": 49,
+    "metadata_columns_original": 37,
+    "metadata_columns_added": [
+      "bucket",
+      "dataset",
+      "flag_has_offset",
+      "flag_missing_channel",
+      "label",
+      "label_case",
+      "n_samples",
+      "pnsn_comcat_label",
+      "row",
+      "snr_e",
+      "snr_n",
+      "snr_z"
+    ],
+    "metadata_waveform_schema": "struct<trace_name:string,event_id:string,n_samples:int,n_empty_components:int,e:array<double>,n:array<double>,z:array<double>,dataset:string>",
+    "processed_metadata": [
+      {
+        "dataset": "comcat",
+        "bytes": 12173065,
+        "MB": 12.17,
+        "rows": 178839
+      },
+      {
+        "dataset": "exotic",
+        "bytes": 442940,
+        "MB": 0.44,
+        "rows": 8912
+      },
+      {
+        "dataset": "noise",
+        "bytes": 854857,
+        "MB": 0.85,
+        "rows": 50227
+      }
+    ],
+    "processed_waveforms": [
+      {
+        "dataset": "comcat",
+        "bytes": 53725713673,
+        "GB": 53.73,
+        "rows": 178839
+      },
+      {
+        "dataset": "exotic",
+        "bytes": 2536773396,
+        "GB": 2.54,
+        "rows": 8912
+      },
+      {
+        "dataset": "noise",
+        "bytes": 15105195887,
+        "GB": 15.11,
+        "rows": 50227
+      }
+    ],
+    "csv_total_bytes": 56530590,
+    "csv_total_MB": 56.53,
+    "parquet_metadata_total_bytes": 13470862,
+    "parquet_metadata_total_MB": 13.47
+  }
+}

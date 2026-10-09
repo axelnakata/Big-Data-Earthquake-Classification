@@ -1,0 +1,23 @@
+# Private coursework (specs, assignment briefs, drafts) and local assistant notes
+_private/
+CLAUDE.md
+
+# Python / Jupyter
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Spark
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Data never goes into git (lives in HDFS)
+*.hdf5
+*.h5
+*.csv
+*.parquet
+
+# OS
+.DS_Store

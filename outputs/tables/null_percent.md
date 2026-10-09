@@ -1,0 +1,41 @@
+# Null % per kolom per file (raw)
+
+| column                                 |   comcat | exotic   | noise   |
+|:---------------------------------------|---------:|:---------|:--------|
+| event_id                               |     0    | 0.0      | –       |
+| source_origin_time                     |     0    | –        | –       |
+| source_latitude_deg                    |     0    | –        | –       |
+| source_longitude_deg                   |     0    | –        | –       |
+| source_type                            |     0    | 0.0      | 0.0     |
+| source_depth_km                        |     0    | –        | –       |
+| preferred_source_magnitude             |     0    | –        | –       |
+| preferred_source_magnitude_type        |     0    | –        | –       |
+| preferred_source_magnitude_uncertainty |     0.51 | –        | –       |
+| source_depth_uncertainty_km            |     0    | –        | –       |
+| source_horizontal_uncertainty_km       |     0    | –        | –       |
+| station_network_code                   |     0    | 0.0      | 0.0     |
+| station_channel_code                   |     0    | 0.0      | 0.0     |
+| station_code                           |     0    | 0.0      | 0.0     |
+| station_location_code                  |     0    | 0.0      | 0.0     |
+| station_latitude_deg                   |     0    | 0.0      | 0.0     |
+| station_longitude_deg                  |     0    | 0.0      | 0.0     |
+| station_elevation_m                    |     0    | 0.0      | 0.0     |
+| trace_name                             |     0    | 0.0      | 0.0     |
+| trace_sampling_rate_hz                 |     0    | 0.0      | 0.0     |
+| trace_start_time                       |     0    | 0.0      | 0.0     |
+| trace_S_arrival_sample                 |     0    | 92.88    | –       |
+| trace_P_arrival_sample                 |     0    | 1.29     | –       |
+| trace_S_arrival_uncertainty_s          |     0    | –        | –       |
+| trace_P_arrival_uncertainty_s          |     0.31 | –        | –       |
+| trace_P_polarity                       |     0.06 | –        | –       |
+| trace_S_onset                          |    24.26 | 92.88    | –       |
+| trace_P_onset                          |    24.91 | 1.29     | –       |
+| trace_snr_db                           |     0    | 0.0      | –       |
+| source_type_pnsn_label                 |     0    | –        | –       |
+| source_local_magnitude                 |    19.03 | –        | –       |
+| source_local_magnitude_uncertainty     |    19.03 | –        | –       |
+| source_duration_magnitude              |     0.21 | –        | –       |
+| source_duration_magnitude_uncertainty  |     0.21 | –        | –       |
+| source_hand_magnitude                  |    99.22 | –        | –       |
+| trace_missing_channel                  |     0    | –        | –       |
+| trace_has_offset                       |     0    | –        | –       |

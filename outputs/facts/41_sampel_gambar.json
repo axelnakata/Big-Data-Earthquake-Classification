@@ -1,0 +1,50 @@
+[
+  {
+    "kelas": "(a) Gempa bumi",
+    "dataset": "comcat",
+    "trace_name": "bucket8$11139,:3,:15001",
+    "event_id": "uw61361701",
+    "station_code": "PR03",
+    "station_channel_code": "BH",
+    "trace_start_time": "2017-12-29 23:29:32.840000",
+    "snr_z_db": 23.39,
+    "snr_z_percentile_in_class": 93.1,
+    "z_abs_max_counts": 6302.1
+  },
+  {
+    "kelas": "(b) Ledakan",
+    "dataset": "comcat",
+    "trace_name": "bucket8$16655,:3,:15001",
+    "event_id": "uw61698952",
+    "station_code": "STOR",
+    "station_channel_code": "HH",
+    "trace_start_time": "2021-01-14 19:09:02.560000",
+    "snr_z_db": 14.51,
+    "snr_z_percentile_in_class": 87.9,
+    "z_abs_max_counts": 3982.1
+  },
+  {
+    "kelas": "(c) Peristiwa permukaan",
+    "dataset": "exotic",
+    "trace_name": "bucket1$3610,:3,:18001",
+    "event_id": "pnsn2000348",
+    "station_code": "VALT",
+    "station_channel_code": "BH",
+    "trace_start_time": "2015-01-11 18:43:36",
+    "snr_z_db": 17.87,
+    "snr_z_percentile_in_class": 87.0,
+    "z_abs_max_counts": 71535.5
+  },
+  {
+    "kelas": "(d) Noise",
+    "dataset": "noise",
+    "trace_name": "bucket10$4084,:3,:15001",
+    "event_id": "",
+    "station_code": "PR03",
+    "station_channel_code": "BH",
+    "trace_start_time": "2020-03-17 21:01:43.490000",
+    "snr_z_db": null,
+    "snr_z_percentile_in_class": null,
+    "z_abs_max_counts": 95.5
+  }
+]

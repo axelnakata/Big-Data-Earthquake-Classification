@@ -1,0 +1,235 @@
+{
+ "spark_config": {
+  "master": "local[*]",
+  "driver_memory": "12g"
+ },
+ "ops": {
+  "op1_class_count": {
+   "question": "Berapa jumlah rekaman per kelas?",
+   "result": {
+    "earthquake": 162700,
+    "noise": 50227,
+    "explosion": 16139,
+    "surface_event": 8912
+   },
+   "seconds_median": 0.14,
+   "seconds_runs": [
+    1.025,
+    0.141,
+    0.11
+   ]
+  },
+  "op2_biggest_event_per_class": {
+   "question": "Kejadian mana yang terbesar per kelas (earthquake, explosion), dihitung per event_id unik",
+   "result": [
+    {
+     "label": "earthquake",
+     "event_id": "uw60507871",
+     "magnitude": 5.1,
+     "magnitude_type": "mh",
+     "year": 2013
+    },
+    {
+     "label": "explosion",
+     "event_id": "uw10621928",
+     "magnitude": 3.3,
+     "magnitude_type": "md",
+     "year": 2004
+    }
+   ],
+   "seconds_median": 0.36,
+   "seconds_runs": [
+    0.742,
+    0.365,
+    0.318
+   ]
+  },
+  "op3_pivot_network_class": {
+   "question": "Bagaimana proporsi kelas di setiap jaringan stasiun?",
+   "top3_networks_by_records": {
+    "UW": 123955,
+    "PB": 51971,
+    "CC": 32305
+   },
+   "pct_per_class_top3": {
+    "UW": {
+     "earthquake": 68.63,
+     "explosion": 5.91,
+     "noise": 20.99,
+     "surface_event": 4.47
+    },
+    "PB": {
+     "earthquake": 70.75,
+     "explosion": 7.35,
+     "noise": 21.02,
+     "surface_event": 0.87
+    },
+    "CC": {
+     "earthquake": 67.27,
+     "explosion": 3.15,
+     "noise": 20.63,
+     "surface_event": 8.96
+    }
+   },
+   "most_notable_finding": "Jaringan CC: kelas surface_event = 9.0% dari rekaman jaringan itu, vs 3.7% rata-rata semua jaringan (selisih 5.2 poin persen) \u2014 sinyal jalan pintas kelas-jaringan.",
+   "seconds_median": 0.16,
+   "seconds_runs": [
+    0.628,
+    0.162,
+    0.145
+   ]
+  },
+  "op4_peak_ratio_z": {
+   "question": "Seberapa menonjol lonjakan terbesar dibanding getaran rata-rata (komponen Z)?",
+   "definition": "demean per rekaman (z - mean(z)), lalu rasio = max(|z_demean|) / mean(|z_demean|); rekaman dengan z kosong (semua nol) dilewati dan dihitung terpisah",
+   "result": {
+    "earthquake": {
+     "n": 159397,
+     "q1": 5.48,
+     "median": 15.19,
+     "q3": 34.09
+    },
+    "explosion": {
+     "n": 15931,
+     "q1": 5.3,
+     "median": 10.17,
+     "q3": 17.61
+    },
+    "surface_event": {
+     "n": 8912,
+     "q1": 13.61,
+     "median": 21.31,
+     "q3": 33.17
+    },
+    "noise": {
+     "n": 50227,
+     "q1": 3.89,
+     "median": 4.57,
+     "q3": 5.31
+    }
+   },
+   "skipped_empty_z_per_class": {
+    "earthquake": 3303,
+    "explosion": 208
+   },
+   "seconds_median": 90.56,
+   "seconds_runs": [
+    96.402,
+    90.428,
+    90.561
+   ]
+  },
+  "op5_graph_degree": {
+   "question": "Setiap kejadian direkam oleh berapa stasiun?",
+   "method": "DataFrame (vertices + edges diturunkan dari metadata dengan groupBy/countDistinct), bukan GraphFrames \u2014 dependency tambahan tidak diperlukan untuk sekadar menghitung derajat",
+   "n_event_nodes": 51448,
+   "n_station_nodes": 644,
+   "n_edges": 187751,
+   "stations_per_event_by_class": {
+    "earthquake": {
+     "median": 3,
+     "avg": 4.11
+    },
+    "surface_event": {
+     "median": 1,
+     "avg": 1.64
+    },
+    "explosion": {
+     "median": 2,
+     "avg": 2.52
+    }
+   },
+   "seconds_median": 0.54,
+   "seconds_runs": [
+    0.717,
+    0.536,
+    0.477
+   ]
+  }
+ },
+ "checks": {
+  "1_empty_components": {
+   "question": "Apakah komponen Z pernah kosong (semua nol)? Dibandingkan dengan E dan N.",
+   "per_dataset": {
+    "comcat": {
+     "n": 178839,
+     "e_empty": 49943,
+     "n_empty": 49892,
+     "z_empty": 3511
+    },
+    "exotic": {
+     "n": 8912,
+     "e_empty": 4779,
+     "n_empty": 4933,
+     "z_empty": 0
+    },
+    "noise": {
+     "n": 50227,
+     "e_empty": 14735,
+     "n_empty": 14322,
+     "z_empty": 0
+    }
+   },
+   "per_class": {
+    "earthquake": {
+     "n": 162700,
+     "e_empty": 46280,
+     "n_empty": 46237,
+     "z_empty": 3303
+    },
+    "explosion": {
+     "n": 16139,
+     "e_empty": 3663,
+     "n_empty": 3655,
+     "z_empty": 208
+    },
+    "surface_event": {
+     "n": 8912,
+     "e_empty": 4779,
+     "n_empty": 4933,
+     "z_empty": 0
+    },
+    "noise": {
+     "n": 50227,
+     "e_empty": 14735,
+     "n_empty": 14322,
+     "z_empty": 0
+    }
+   }
+  },
+  "2_qb_code": {
+   "meaning": "qb = quarry blast (ledakan tambang)",
+   "source": "Tabel S2 (supplement) Ni dkk. (2023), Seismica 2(1) \u2014 dipetakan di notebooks/03_cleaning_quality.ipynb dan tercatat di outputs/tables/label_cases.md",
+   "rows_dropped_currently": 21,
+   "note_scope_exception": "21 baris qb tidak ada di /datalake/processed (dibuang saat cleaning, aturan R3) sehingga untuk cek dampak skenario ini baris qb dibaca dari raw zone (read-only, tidak diubah) \u2014 satu-satunya bacaan raw di skrip ini, disengaja dan dicatat di sini.",
+   "scenario_a_current_qb_dropped": {
+    "counts_per_class": {
+     "earthquake": 162700,
+     "noise": 50227,
+     "explosion": 16139,
+     "surface_event": 8912
+    },
+    "total_rows": 237978,
+    "n_events": 51448,
+    "n_edges": 187751
+   },
+   "scenario_b_qb_kept_as_explosion": {
+    "counts_per_class": {
+     "earthquake": 162700,
+     "noise": 50227,
+     "explosion": 16160,
+     "surface_event": 8912
+    },
+    "total_rows": 237999,
+    "n_events": 51452,
+    "n_edges": 187772,
+    "new_events_introduced_by_qb": 4
+   },
+   "decision": "Data TIDAK diubah oleh skrip ini. qb tetap dibuang sesuai aturan R3 (Tabel 11 laporan A1)."
+  },
+  "3_unique_counts": {
+   "unique_event_id_on_clean_data": 51448,
+   "unique_station_network_code_plus_station_code_on_clean_data": 644
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "exotic": {
+  "dataset": "exotic",
+  "traces": 8912,
+  "spark_tasks": 5,
+  "seconds": 20.3,
+  "waveform_gb": 3.85,
+  "throughput_mb_s": 189.9,
+  "finished_at": "2026-09-23T22:53:02Z"
+ },
+ "noise": {
+  "dataset": "noise",
+  "traces": 50227,
+  "spark_tasks": 25,
+  "seconds": 85.2,
+  "waveform_gb": 18.08,
+  "throughput_mb_s": 212.2,
+  "finished_at": "2026-09-23T23:00:05Z"
+ },
+ "comcat": {
+  "dataset": "comcat",
+  "traces": 178839,
+  "spark_tasks": 88,
+  "seconds": 284.3,
+  "waveform_gb": 64.39,
+  "throughput_mb_s": 226.5,
+  "finished_at": "2026-09-23T23:04:50Z"
+ }
+}

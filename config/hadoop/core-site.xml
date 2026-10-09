@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <property><name>fs.defaultFS</name><value>hdfs://localhost:9000</value></property>
+  <!-- default /tmp dibersihkan macOS saat restart; pindahkan ke folder permanen -->
+  <property><name>hadoop.tmp.dir</name><value>/Users/axelnakata/pnwml-data/hadoop-data/tmp</value></property>
+  <!-- peran untuk demo tata kelola: user -> group tanpa membuat user macOS (notebooks/06_governance.ipynb) -->
+  <property><name>hadoop.user.group.static.mapping.overrides</name><value>dr.who=;engineer=engineer;scientist=scientist</value></property>
+</configuration>

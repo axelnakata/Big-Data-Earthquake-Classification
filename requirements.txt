@@ -1,0 +1,10 @@
+pyspark==3.5.9
+pyarrow==25.0.1
+pandas==3.0.6
+numpy==2.4.6
+h5py==3.16.0
+fsspec==2026.9.0
+requests==2.34.2
+matplotlib==3.11.2
+tabulate==0.10.0
+jupyterlab==4.6.4
