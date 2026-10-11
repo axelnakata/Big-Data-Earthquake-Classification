@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CNN training monitor</title>
+<style>
+  :root { --fg: #1d1d1f; --muted: #6e6e73; --bg: #fff; --card: #f5f5f7; --line: #d2d2d7; --accent: #1f6feb; --good: #1a7f37; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #f5f5f7; --muted: #a1a1a6; --bg: #111; --card: #1c1c1e; --line: #3a3a3c; --accent: #4c8dff; --good: #3fb950; } }
+  body { margin: 0; padding: 20px 16px; background: var(--bg); color: var(--fg); font: 14px/1.45 -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 980px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 2px; }
+  .muted { color: var(--muted); font-size: 12.5px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 14px 0; }
+  .card { background: var(--card); border-radius: 10px; padding: 10px 12px; }
+  .card .k { font-size: 12px; color: var(--muted); }
+  .card .v { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .bar { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; margin: 4px 0 10px; }
+  .bar > div { height: 100%; background: var(--accent); width: 0; transition: width .4s; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 5px 6px; border-bottom: 1px solid var(--line); text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  tr.best td { color: var(--good); font-weight: 600; }
+  pre { background: var(--card); border-radius: 10px; padding: 10px; font-size: 12px; overflow-x: auto; white-space: pre-wrap; }
+  svg { width: 100%; height: 190px; background: var(--card); border-radius: 10px; }
+  .status { display: inline-block; padding: 2px 8px; border-radius: 10px; background: var(--accent); color: #fff; font-size: 12px; }
+  h2 { font-size: 15px; margin: 18px 0 6px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Training monitor <span id="status" class="status">waiting</span></h1>
+  <div class="muted">PNW-ML · 4 classes · refreshes every 5 s · times in UTC · started <span id="started">–</span> · updated <span id="updated">–</span></div>
+
+  <div class="grid">
+    <div class="card"><div class="k">Epoch</div><div class="v" id="epoch">–</div></div>
+    <div class="card"><div class="k">Step</div><div class="v" id="step">–</div></div>
+    <div class="card"><div class="k">Train loss (epoch avg)</div><div class="v" id="loss">–</div></div>
+    <div class="card"><div class="k">Speed</div><div class="v" id="rate">–</div></div>
+    <div class="card"><div class="k">This epoch ends in</div><div class="v" id="eta">–</div></div>
+    <div class="card"><div class="k">Worst case, all epochs</div><div class="v" id="etamax">–</div></div>
+    <div class="card"><div class="k">Best val macro-F1</div><div class="v" id="best">–</div></div>
+    <div class="card"><div class="k">Early stop</div><div class="v" id="patience">–</div></div>
+  </div>
+
+  <div class="muted">Epoch progress</div><div class="bar"><div id="pe"></div></div>
+  <div class="muted">Run progress (of max epochs)</div><div class="bar"><div id="pr"></div></div>
+
+  <h2>Per epoch</h2>
+  <svg id="chart" viewBox="0 0 600 190" preserveAspectRatio="none"></svg>
+  <table>
+    <thead><tr><th>Epoch</th><th>Train loss</th><th>Val loss</th><th>Val macro-F1</th><th>Acc</th><th>F1 eq</th><th>F1 ex</th><th>F1 surf</th><th>F1 noise</th><th>LR</th><th>Min</th></tr></thead>
+    <tbody id="hist"></tbody>
+  </table>
+
+  <h2>Log</h2>
+  <pre id="log">–</pre>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const fmt = (v, d = 3) => v == null || isNaN(v) ? '–' : Number(v).toFixed(d);
+const dur = s => { if (s == null || !isFinite(s)) return '–'; s = Math.max(0, s); const h = Math.floor(s / 3600), m = Math.round((s % 3600) / 60); return h ? `${h} h ${m} min` : `${m} min`; };
+
+function chart(h) {
+  const svg = $('chart'), W = 600, H = 190, pad = 24;
+  if (!h.length) { svg.innerHTML = ''; return; }
+  const n = Math.max(h.length, 2), xs = i => pad + i * (W - 2 * pad) / (n - 1);
+  const loss = h.flatMap(r => [r.train_loss, r.val_loss]), lo = Math.min(...loss), hi = Math.max(...loss);
+  const yl = v => H - pad - (v - lo) / ((hi - lo) || 1) * (H - 2 * pad), yf = v => H - pad - v * (H - 2 * pad);
+  const line = (vals, y, color, dash) => `<polyline fill="none" stroke="${color}" stroke-width="2" ${dash ? 'stroke-dasharray="5 4"' : ''} points="${vals.map((v, i) => xs(i) + ',' + y(v)).join(' ')}"/>`;
+  svg.innerHTML = line(h.map(r => r.train_loss), yl, '#8e8e93') + line(h.map(r => r.val_loss), yl, '#8e8e93', true)
+    + line(h.map(r => r.val_macro_f1), yf, 'var(--accent)')
+    + `<text x="${pad}" y="14" font-size="11" fill="currentColor">— val macro-F1 (0–1, blue)   — train loss   - - val loss (grey, scaled)</text>`;
+}
+
+async function refresh() {
+  try {
+    const p = await (await fetch('progress.json?' + Date.now())).json();
+    $('status').textContent = p.status || '–';
+    $('started').textContent = p.started_at || '–';
+    $('updated').textContent = p.updated_at || '–';
+    $('epoch').textContent = p.epoch ? `${p.epoch} / ${p.max_epochs}` : '–';
+    $('step').textContent = p.step ? `${p.step} / ${p.steps}` : '–';
+    $('loss').textContent = fmt(p.loss, 4);
+    $('rate').textContent = p.rate ? `${Math.round(p.rate)} rec/s` : '–';
+    $('eta').textContent = dur(p.eta_epoch);
+    $('etamax').textContent = dur(p.eta_max);
+    $('best').textContent = p.best_epoch ? `${fmt(p.best_f1, 4)} (ep ${p.best_epoch})` : '–';
+    $('patience').textContent = p.patience ? `${p.bad_epochs || 0} / ${p.patience}` : '–';
+    $('pe').style.width = p.steps ? `${100 * p.step / p.steps}%` : '0';
+    $('pr').style.width = p.max_epochs ? `${100 * ((p.epoch || 1) - 1 + (p.step || 0) / (p.steps || 1)) / p.max_epochs}%` : '0';
+    const h = p.history || [];
+    $('hist').innerHTML = h.map(r => `<tr class="${r.epoch === p.best_epoch ? 'best' : ''}"><td>${r.epoch}</td><td>${fmt(r.train_loss, 4)}</td><td>${fmt(r.val_loss, 4)}</td><td>${fmt(r.val_macro_f1, 4)}</td><td>${fmt(r.val_acc)}</td><td>${fmt(r.f1_earthquake)}</td><td>${fmt(r.f1_explosion)}</td><td>${fmt(r.f1_surface_event)}</td><td>${fmt(r.f1_noise)}</td><td>${r.lr}</td><td>${fmt(r.seconds / 60, 1)}</td></tr>`).join('');
+    chart(h);
+  } catch (e) { $('status').textContent = 'no progress yet'; }
+  try {
+    const log = await (await fetch('train.log?' + Date.now())).text();
+    $('log').textContent = log.trim().split('\n').slice(-15).join('\n');
+  } catch (e) {}
+}
+refresh();
+setInterval(refresh, 5000);
+</script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 pyspark==3.5.9
 pyarrow==25.0.1
+torch==2.14.1
+graphframes-py==0.12.3
 pandas==3.0.6
 numpy==2.4.6
 h5py==3.16.0

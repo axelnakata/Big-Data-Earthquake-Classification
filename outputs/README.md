@@ -20,8 +20,15 @@ Semua angka di laporan berasal dari file di folder ini, yang dihasilkan oleh not
 | `tables/data_model.md`, `graph_summary.md` | Model data relasional / array / graf | `05` | 4.2.1 |
 | `tables/operations_timing.md`, `waveform_features_by_class.md` | Operasi Spark beserta waktu dan hasilnya | `05` | 4.2.2 |
 | `tables/audit_log_sample.md` | Contoh audit log HDFS (akses diizinkan/ditolak) | `06` | 3.1 |
+| `tables/a2_dataset_summary.md` … `a2_stations_per_event.md`, `figures/a2_*` (audit) | Kondisi data sebelum ML: kolom, kelas, posisi kejadian, komponen E/N/Z, waktu, lokasi | `07` | 4.3, 5.1 |
+| `tables/a2_column_decisions.md`, `a2_preprocessing_funnel.md`, `a2_class_weights.md`, `a2_split_by_class.md`, `a2_normalization_example.md` | Keputusan preprocessing dan hasilnya | `08` | 5.1 |
+| `tables/a2_context_check.md`, `a2_model_inputs.md`, `figures/a2_context_encoding.png`, `a2_crop_illustration.png` | Fitur konteks dan input CNN | `09` | 5.2 |
+| `tables/a2_pilot.json`, `a2_cnn_architecture.md`, `a2_training_history.*`, `a2_training_log.txt`, `figures/a2_learning_curves.png` | Arsitektur, pilot, riwayat training | `10`, `src/train_cnn.py` | 5.3–5.4 |
+| `tables/a2_test_metrics_*.md`, `a2_confusion_matrix.md`, `a2_metrics_by_sensor.md`, `a2_context_permutation.md`, `a2_position_test.md` | Evaluasi dan analisis model | `11` | 5.5–5.6 |
+| `tables/a2_graph_*.md`, `figures/a2_graph_*.png` | Graph analytics: ukuran graph, ambang bobot, degree, connected components, PageRank, komunitas, triangle count | `12` | 6 |
+| `models/cnn_best.pt` | Bobot CNN terbaik (epoch dengan macro-F1 validasi tertinggi) | `src/train_cnn.py` | 5.4 |
 | `facts/*.json` | Angka mentah untuk Subbab 4.1 dan 4.2.2 | `scripts/` | 4.1, 4.2 |
 | `figures/` | Gambar laporan (waveform per kelas, rekaman per tahun) | `02`, `05`, `scripts/` | 1, 4.1 |
 | `screenshots/` | Tangkapan layar NameNode UI dan Spark UI | manual | 2.2, 2.3 |
 
-`01`–`06` = notebook di `notebooks/`.
+`01`–`12` = notebook di `notebooks/`.

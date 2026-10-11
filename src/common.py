@@ -15,6 +15,9 @@ OUT_FIGS = os.path.join(ROOT, 'outputs', 'figures')
 HDFS = 'hdfs://localhost:9000'
 RAW, PROCESSED, QUALITY = '/datalake/raw', '/datalake/processed', '/datalake/quality'
 DATASETS = ['comcat', 'exotic', 'noise']
+CLASSES = ['earthquake', 'explosion', 'surface_event', 'noise']
+COLORS = {'earthquake': '#1f77b4', 'explosion': '#d62728', 'surface_event': '#2ca02c', 'noise': '#7f7f7f'}
+ML = '/datalake/ml'
 
 os.environ['JAVA_HOME'] = subprocess.check_output(['/usr/libexec/java_home', '-v', '11']).decode().strip()
 os.environ['HADOOP_HOME'] = os.path.expanduser('~/opt/hadoop')
@@ -35,9 +38,12 @@ def sh(cmd, check=True, quiet=False):
     return out
 
 
-def spark_session(app='pnwml', driver_mem='12g'):
+def spark_session(app='pnwml', driver_mem='12g', packages=None):
     from pyspark.sql import SparkSession
-    spark = (SparkSession.builder.master('local[*]').appName(app)
+    builder = SparkSession.builder
+    if packages:
+        builder = builder.config('spark.jars.packages', packages)
+    spark = (builder.master('local[*]').appName(app)
              .config('spark.driver.memory', driver_mem)  # ~50% of 24 GB RAM
              .config('spark.local.dir', os.path.expanduser('~/pnwml-data/tmp/spark-local'))
              .config('spark.hadoop.fs.defaultFS', HDFS)
@@ -60,3 +66,10 @@ def save_md(df, name, title=None, note=None):
     with open(os.path.join(OUT_TABLES, f'{name}.md'), 'w') as f:
         f.write(body)
     return os.path.join(OUT_TABLES, f'{name}.md')
+
+
+def save_fig(name):
+    """Save the current matplotlib figure to outputs/figures/<name>.png."""
+    import matplotlib.pyplot as plt
+    os.makedirs(OUT_FIGS, exist_ok=True)
+    plt.savefig(os.path.join(OUT_FIGS, f'{name}.png'), dpi=150, bbox_inches='tight')

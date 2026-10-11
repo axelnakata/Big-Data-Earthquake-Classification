@@ -1,0 +1,39 @@
+2026-10-11 09:31:43  start: 5 processes x 2 threads, batch 64/process, 510 steps/epoch, 164,048 train rows, 35,078 val rows
+2026-10-11 09:35:39  epoch 1 step 200/510  loss 0.7715  271 rec/s
+2026-10-11 09:39:36  epoch 1 step 400/510  loss 0.6351  271 rec/s
+2026-10-11 09:43:27  epoch 1 done in 11.7 min  train_loss 0.5943  val_loss 0.6806  val_macro_f1 0.6435  * best
+2026-10-11 09:47:19  epoch 2 step 200/510  loss 0.4967  276 rec/s
+2026-10-11 09:51:12  epoch 2 step 400/510  loss 0.4615  275 rec/s
+2026-10-11 09:55:08  epoch 2 done in 11.7 min  train_loss 0.4353  val_loss 1.4619  val_macro_f1 0.5675
+2026-10-11 09:59:07  epoch 3 step 200/510  loss 0.4269  268 rec/s
+2026-10-11 10:04:32  epoch 3 step 400/510  loss 0.3963  227 rec/s
+2026-10-11 10:09:03  epoch 3 done in 13.9 min  train_loss 0.3807  val_loss 0.4958  val_macro_f1 0.7369  * best
+2026-10-11 10:13:27  epoch 4 step 200/510  loss 0.3324  242 rec/s
+2026-10-11 10:17:32  epoch 4 step 400/510  loss 0.3332  251 rec/s
+2026-10-11 10:21:21  epoch 4 done in 12.3 min  train_loss 0.3355  val_loss 0.3665  val_macro_f1 0.7818  * best
+2026-10-11 10:25:15  epoch 5 step 200/510  loss 0.2802  274 rec/s
+2026-10-11 10:29:21  epoch 5 step 400/510  loss 0.2949  267 rec/s
+2026-10-11 10:33:26  epoch 5 done in 12.1 min  train_loss 0.3053  val_loss 0.3189  val_macro_f1 0.7421
+2026-10-11 10:37:34  epoch 6 step 200/510  loss 0.2587  259 rec/s
+2026-10-11 10:41:48  epoch 6 step 400/510  loss 0.2523  255 rec/s
+2026-10-11 10:45:58  epoch 6 done in 12.5 min  train_loss 0.2561  val_loss 0.3455  val_macro_f1 0.8139  * best
+2026-10-11 10:50:02  epoch 7 step 200/510  loss 0.2498  262 rec/s
+2026-10-11 10:54:07  epoch 7 step 400/510  loss 0.2556  262 rec/s
+2026-10-11 10:58:14  epoch 7 done in 12.3 min  train_loss 0.2605  val_loss 0.3049  val_macro_f1 0.8166  * best
+2026-10-11 11:02:14  epoch 8 step 200/510  loss 0.2435  266 rec/s
+2026-10-11 11:06:25  epoch 8 step 400/510  loss 0.2468  261 rec/s
+2026-10-11 11:10:26  epoch 8 done in 12.2 min  train_loss 0.2390  val_loss 0.3706  val_macro_f1 0.8437  * best
+2026-10-11 11:14:27  epoch 9 step 200/510  loss 0.2170  265 rec/s
+2026-10-11 11:18:32  epoch 9 step 400/510  loss 0.2217  263 rec/s
+2026-10-11 11:22:33  epoch 9 done in 12.1 min  train_loss 0.2341  val_loss 0.3133  val_macro_f1 0.8572  * best
+2026-10-11 11:26:42  epoch 10 step 200/510  loss 0.2141  257 rec/s
+2026-10-11 11:30:55  epoch 10 step 400/510  loss 0.2307  255 rec/s
+2026-10-11 11:34:54  epoch 10 done in 12.4 min  train_loss 0.2286  val_loss 0.5091  val_macro_f1 0.8035
+2026-10-11 11:39:03  epoch 11 step 200/510  loss 0.2214  258 rec/s
+2026-10-11 11:43:09  epoch 11 step 400/510  loss 0.2203  259 rec/s
+2026-10-11 11:47:07  epoch 11 done in 12.2 min  train_loss 0.2184  val_loss 0.3180  val_macro_f1 0.8240
+2026-10-11 11:50:53  epoch 12 step 200/510  loss 0.1925  283 rec/s
+2026-10-11 11:54:34  epoch 12 step 400/510  loss 0.1917  286 rec/s
+2026-10-11 11:58:25  epoch 12 done in 11.3 min  train_loss 0.1933  val_loss 0.5198  val_macro_f1 0.8283
+2026-10-11 11:58:25  early stopping: no improvement for 3 epochs
+2026-10-11 11:58:25  finished: best epoch 9, val macro-F1 0.8572, 147 min this session

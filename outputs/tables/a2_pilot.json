@@ -1,0 +1,10 @@
+{
+ "rate": 272.96161542972254,
+ "seconds": 234.4652009010315,
+ "steps": 200,
+ "loss_first": 1.415623027086258,
+ "loss_last": 0.5857938796281814,
+ "processes": 5,
+ "batch_per_process": 64,
+ "train_rows": 164048
+}
