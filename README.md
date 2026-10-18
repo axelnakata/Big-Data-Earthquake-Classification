@@ -7,7 +7,7 @@
 | Mahasiswa | Axel Nino Nakata — 2702749701 |
 | Dosen | Dr. Devi Fitrianah, S.Kom., M.T.I. · Prof. Spits Warnars Harco Leslie Hendric, S.Kom., M.T.I., Ph.D. |
 
-> **Catatan:** repo ini **tidak berisi dataset** (±90 GB), jadi tidak bisa langsung dijalankan setelah di-clone. Dataset bersifat publik dan bisa diunduh dari sumber aslinya (lihat [Dataset](#dataset)). Semua hasil eksekusi (tabel, gambar, model, log HDFS) sudah tersimpan di `outputs/` dan di output notebook.
+> **Catatan:** repo ini **tidak berisi dataset** (±90 GB), jadi tidak bisa langsung dijalankan setelah di-clone. Dataset bersifat publik dan bisa melakukan downlaod terlebih dahulu dari sumber aslinya (lihat [Dataset](#dataset)). Semua hasil eksekusi (tabel, gambar, model, log HDFS) sudah tersimpan di `outputs/` dan di output notebook.
 
 ## Ringkasan
 
