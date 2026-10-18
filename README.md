@@ -7,11 +7,11 @@
 | Mahasiswa | Axel Nino Nakata — 2702749701 |
 | Dosen | Dr. Devi Fitrianah, S.Kom., M.T.I. · Prof. Spits Warnars Harco Leslie Hendric, S.Kom., M.T.I., Ph.D. |
 
-> **Catatan:** repo ini **tidak berisi dataset** (±90 GB), jadi tidak bisa langsung dijalankan setelah di-clone. Dataset bersifat publik dan bisa melakukan downlaod terlebih dahulu dari sumber aslinya (lihat [Dataset](#dataset)). Semua hasil eksekusi (tabel, gambar, model, log HDFS) sudah tersimpan di `outputs/` dan di output notebook.
+> **Catatan:** repo ini **tidak berisi dataset** (±90 GB), jadi tidak bisa langsung dijalankan setelah di-clone. Dataset bersifat publik dan bisa melakukan download terlebih dahulu dari sumber aslinya (lihat [Dataset](#dataset)). Semua hasil eksekusi (tabel, gambar, model, log HDFS) sudah tersimpan di `outputs/` dan di output notebook.
 
 ## Ringkasan
 
-Sensor seismik merekam semua getaran tanah tanpa tahu sumbernya, sehingga analis Pacific Northwest Seismic Network (PNSN) harus memeriksa setiap kejadian secara manual (*trigger review*). Proyek ini membangun solusi big data *end-to-end* untuk mengotomatiskan klasifikasi tersebut ke empat kelas: **gempa bumi, ledakan, peristiwa permukaan (*surface event*), dan noise**. Dataset PNW-ML (±90 GB, 2002–2022) disimpan di *data lake* **HDFS**, dibersihkan dan dikonversi dengan **Apache Spark**, lalu dipakai melatih **CNN 1D** (PyTorch, dijalankan oleh Spark lewat **TorchDistributor**) yang membaca waveform mentah komponen Z dan 9 fitur konteks. Model mencapai **macro-F1 0,861** dan **accuracy 0,925** pada data test, jauh di atas baseline (0,202). **Graph analytics** dengan GraphFrames menunjukkan bahwa jaringan stasiun hampir seluruhnya terhubung, 77,7% peristiwa permukaan hanya terekam oleh satu stasiun, dan stasiun membentuk kelompok per wilayah dengan komposisi kejadian yang berbeda. Temuan terakhir ini mendukung keputusan untuk tidak memakai lokasi stasiun sebagai fitur model.
+Sensor seismik merekam semua getaran tanah tanpa tahu sumbernya, sehingga analis Pacific Northwest Seismic Network (PNSN) harus memeriksa setiap kejadian secara manual (*trigger review*). Proyek ini membangun solusi big data *end-to-end* untuk mengotomatiskan klasifikasi tersebut ke empat kelas: **gempa bumi, ledakan, peristiwa permukaan (*surface event*), dan noise**. Dataset PNW-ML (±90 GB, 2002–2022) disimpan di *data lake* **HDFS**, dibersihkan dan dikonversi dengan **Apache Spark**, lalu dipakai melatih **CNN 1D** (PyTorch, dijalankan oleh Spark lewat **TorchDistributor**) yang membaca waveform dan 9 fitur konteks. Model mencapai **macro-F1 0,861** dan **accuracy 0,925** pada data test, jauh di atas baseline (0,202). **Graph analytics** dengan GraphFrames menunjukkan bahwa jaringan stasiun hampir seluruhnya terhubung, 77,7% peristiwa permukaan hanya terekam oleh satu stasiun, dan stasiun membentuk kelompok per wilayah dengan komposisi kejadian yang berbeda. Temuan terakhir ini mendukung keputusan untuk tidak memakai lokasi stasiun sebagai fitur model.
 
 ## Alur solusi
 
@@ -33,9 +33,9 @@ Sensor seismik merekam semua getaran tanah tanpa tahu sumbernya, sehingga analis
 
 **PNW-ML** (Ni dkk., 2023) adalah dataset publik hasil kurasi dari ±70 TB rekaman kontinu PNSN periode 2002–2022, dengan label dari analis PNSN.
 
-- Repositori dan link unduhan: <https://github.com/niyiyu/PNW-ML> (lisensi MIT)
+- Repositori dan link download: <https://github.com/niyiyu/PNW-ML> (lisensi MIT)
 - Paper: Y. Ni dkk., "Curated Pacific Northwest AI-ready seismic dataset," *Seismica* 2(1), 2023, [doi:10.26443/seismica.v2i1.368](https://doi.org/10.26443/seismica.v2i1.368)
-- File diunduh dari `https://dasway.ess.washington.edu/shared/niyiyu/PNW-ML/<nama_file>`. Server ini kadang dibatasi (*rate-limited*), dan mirror Google Drive tercantum di README PNW-ML. URL, ukuran, dan SHA-256 setiap file tercatat di `outputs/hdfs/lineage.jsonl`.
+- File dilakukan download dari `https://dasway.ess.washington.edu/shared/niyiyu/PNW-ML/<nama_file>`. Server ini kadang dibatasi (*rate-limited*), dan mirror Google Drive tercantum di README PNW-ML. URL, ukuran, dan SHA-256 setiap file tercatat di `outputs/hdfs/lineage.jsonl`.
 
 | Bagian | Metadata (CSV) | Waveform (HDF5) | Durasi | Kelas |
 |---|---|---|---|---|
@@ -105,7 +105,7 @@ outputs/         bukti hasil: tabel, gambar, model (cnn_best.pt), log HDFS — p
 
 ## Reproduksi
 
-Untuk menjalankan ulang pipeline, dataset PNW-ML perlu diunduh terlebih dahulu dan tersedia ruang disk ±180 GB (raw 90 GB + processed 71 GB + data ML 14 GB). Seluruh eksperimen dijalankan pada macOS (10 core CPU, RAM 24 GB) tanpa GPU.
+Untuk menjalankan ulang pipeline, dataset PNW-ML perlu dilakukan download terlebih dahulu dan tersedia ruang disk ±180 GB (raw 90 GB + processed 71 GB + data ML 14 GB). Seluruh eksperimen dijalankan pada macOS (10 core CPU, RAM 24 GB) tanpa GPU.
 
 **Kebutuhan sistem:**
 - Java 11
@@ -119,7 +119,7 @@ python3.11 -m venv .venv && source .venv/bin/activate && pip install -r requirem
 export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 hdfs --daemon start namenode && hdfs --daemon start datanode
 
-# 1. unduh 6 file PNW-ML ke ~/pnwml-data/staging/downloads/, lalu masukkan ke HDFS (+ cek SHA-256)
+# 1. Download 6 file PNW-ML ke ~/pnwml-data/staging/downloads/, lalu masukkan ke HDFS (+ cek SHA-256)
 src/ingest.sh comcat comcat_waveforms.hdf5          # ulangi untuk keenam file
 # 2. jalankan notebook 01–03, lalu konversi waveform
 python src/convert_waveforms.py exotic noise comcat
@@ -128,7 +128,7 @@ caffeinate -i python src/train_cnn.py
 # 4. notebook 10–12
 ```
 
-Kemajuan training bisa dipantau di `http://127.0.0.1:8765/monitor.html` (lihat `src/train_cnn.py`).
+Proses training bisa dilakukan monitoring pada `http://127.0.0.1:8765/monitor.html` (lihat `src/train_cnn.py`).
 
 ## Referensi utama
 
