@@ -103,11 +103,11 @@ outputs/         bukti hasil: tabel, gambar, model (cnn_best.pt), log HDFS — p
 | `11_evaluation_analysis` | Prediksi dengan Spark, metrik, analisis | 5.5–5.6 |
 | `12_graph_analytics` | Graph G1 & G2 dengan GraphFrames | 6 |
 
-## Menjalankan ulang
+## Reproduksi
 
-Butuh dataset dan ruang disk ±180 GB (raw 90 GB + processed 71 GB + data ML 14 GB). Proyek ini diuji di macOS (10 core, RAM 24 GB) tanpa GPU.
+Untuk menjalankan ulang pipeline, dataset PNW-ML perlu diunduh terlebih dahulu dan tersedia ruang disk ±180 GB (raw 90 GB + processed 71 GB + data ML 14 GB). Seluruh eksperimen dijalankan pada macOS (10 core CPU, RAM 24 GB) tanpa GPU.
 
-**Prasyarat:**
+**Kebutuhan sistem:**
 - Java 11
 - Hadoop 3.4.3 di `~/opt/hadoop`, dengan konfigurasi dari `config/hadoop/`
 - Python 3.11 + paket di `requirements.txt` (PySpark, PyTorch, GraphFrames, h5py, dll.)
@@ -130,7 +130,9 @@ caffeinate -i python src/train_cnn.py
 
 Kemajuan training bisa dipantau di `http://127.0.0.1:8765/monitor.html` (lihat `src/train_cnn.py`).
 
-## Referensi
+## Referensi utama
+
+Daftar referensi lengkap ada di laporan. Di bawah ini hanya sumber dataset dan studi acuan utama.
 
 - Y. Ni dkk., "Curated Pacific Northwest AI-ready seismic dataset," *Seismica*, vol. 2, no. 1, 2023, doi:10.26443/seismica.v2i1.368.
 - Y. Ni, "niyiyu/PNW-ML: PNW-ML seismic dataset," Zenodo, 2023, doi:10.5281/zenodo.7627103 (MIT).
