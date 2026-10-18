@@ -27,6 +27,8 @@ Semua angka di laporan berasal dari file di folder ini, yang dihasilkan oleh not
 | `tables/a2_test_metrics_*.md`, `a2_confusion_matrix.md`, `a2_metrics_by_sensor.md`, `a2_context_permutation.md`, `a2_position_test.md` | Evaluasi dan analisis model | `11` | 5.5–5.6 |
 | `tables/a2_graph_*.md`, `figures/a2_graph_*.png` | Graph analytics: ukuran graph, ambang bobot, degree, connected components, PageRank, komunitas, triangle count | `12` | 6 |
 | `models/cnn_best.pt` | Bobot CNN terbaik (epoch dengan macro-F1 validasi tertinggi) | `src/train_cnn.py` | 5.4 |
+| `figures/a2_graph_stations_per_event.*`, `a2_graph_communities_map_v2.*` | Versi laporan Gambar 16 (stasiun per kejadian) dan Gambar 17 (peta kelompok stasiun) | `scripts/fig_621_*.py`, `scripts/fig_623_*.py` | 6.2 |
+| `figures/readme_pipeline.png` | Diagram alur end-to-end untuk README | `scripts/fig_readme_pipeline.py` | — |
 | `facts/*.json` | Angka mentah untuk Subbab 4.1 dan 4.2.2 | `scripts/` | 4.1, 4.2 |
 | `figures/` | Gambar laporan (waveform per kelas, rekaman per tahun) | `02`, `05`, `scripts/` | 1, 4.1 |
 | `screenshots/` | Tangkapan layar NameNode UI dan Spark UI | manual | 2.2, 2.3 |

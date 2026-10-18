@@ -10,3 +10,4 @@ requests==2.34.2
 matplotlib==3.11.2
 tabulate==0.10.0
 jupyterlab==4.6.4
+pyshp==3.1.6
