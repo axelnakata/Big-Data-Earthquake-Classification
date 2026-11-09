@@ -1,0 +1,301 @@
+{
+ "provenance": {
+  "generated_at": "2026-11-09T12:20:39Z",
+  "git_commit": "e75fa56",
+  "files": {
+   "predictions.csv": {
+    "source": [
+     "/datalake/ml/predictions (split=test)",
+     "/datalake/processed/metadata",
+     "/datalake/graph/g1_edges"
+    ],
+    "rows": 35341
+   },
+   "waveforms_sample.json": {
+    "source": [
+     "/datalake/ml/waveforms_z150s (split=test)"
+    ],
+    "rows": 48,
+    "buckets_short": []
+   },
+   "stations.csv": {
+    "source": [
+     "/datalake/graph/g1_edges",
+     "/datalake/graph/g2_vertices",
+     "/datalake/graph/g2_edges",
+     "/datalake/dashboard/lpa_rerun"
+    ],
+    "rows": 642
+   },
+   "explosions.csv": {
+    "source": [
+     "/datalake/processed/metadata (label=explosion)"
+    ],
+    "rows": 6392
+   },
+   "states.json": {
+    "source": [
+     "npm us-atlas@3.0.1 states-10m.json (lisensi ISC), dari US Census Bureau cartographic boundary files 2017"
+    ],
+    "rows": 3
+   },
+   "summary.json": {
+    "source": [
+     "/datalake/graph/g1_edges",
+     "/datalake/processed/metadata",
+     "/datalake/dashboard/lpa_rerun"
+    ],
+    "rows": 1
+   }
+  }
+ },
+ "counts": {
+  "test_recordings": 35341,
+  "g1_events": 51448,
+  "g1_stations": 642,
+  "g2_edges": 8637,
+  "g1_edges": 187751
+ },
+ "stations_per_event": {
+  "buckets": [
+   "1",
+   "2-3",
+   "4-9",
+   ">=10"
+  ],
+  "earthquake": {
+   "events": 39631,
+   "share": [
+    0.175,
+    0.328,
+    0.446,
+    0.051
+   ]
+  },
+  "explosion": {
+   "events": 6392,
+   "share": [
+    0.337,
+    0.444,
+    0.214,
+    0.005
+   ]
+  },
+  "surface_event": {
+   "events": 5425,
+   "share": [
+    0.777,
+    0.126,
+    0.091,
+    0.007
+   ]
+  }
+ },
+ "office_hours_share": {
+  "earthquake": 0.249,
+  "explosion": 0.878,
+  "noise": 0.298,
+  "surface_event": 0.255
+ },
+ "groups": [
+  {
+   "key": "K1",
+   "name_id": "Washington barat (Puget Sound)",
+   "stations": 246,
+   "lat": 47.74,
+   "lon": -122.47,
+   "recordings": 102537,
+   "pct": {
+    "earthquake": 90.2,
+    "explosion": 6.9,
+    "surface_event": 2.9
+   }
+  },
+  {
+   "key": "K2",
+   "name_id": "Washington barat daya – Oregon utara",
+   "stations": 125,
+   "lat": 45.76,
+   "lon": -122.58,
+   "recordings": 62972,
+   "pct": {
+    "earthquake": 84.3,
+    "explosion": 7.2,
+    "surface_event": 8.6
+   }
+  },
+  {
+   "key": "K3",
+   "name_id": "Washington timur",
+   "stations": 61,
+   "lat": 46.39,
+   "lon": -119.26,
+   "recordings": 11304,
+   "pct": {
+    "earthquake": 86.8,
+    "explosion": 12.9,
+    "surface_event": 0.4
+   }
+  },
+  {
+   "key": "K4",
+   "name_id": "Oregon barat daya",
+   "stations": 48,
+   "lat": 42.89,
+   "lon": -123.07,
+   "recordings": 4066,
+   "pct": {
+    "earthquake": 62.7,
+    "explosion": 37.3,
+    "surface_event": 0.0
+   }
+  },
+  {
+   "key": "K5",
+   "name_id": "Oregon barat tengah",
+   "stations": 24,
+   "lat": 43.97,
+   "lon": -122.43,
+   "recordings": 2962,
+   "pct": {
+    "earthquake": 53.5,
+    "explosion": 44.2,
+    "surface_event": 2.4
+   }
+  },
+  {
+   "key": "K6",
+   "name_id": "Oregon tengah (kawasan gunung api)",
+   "stations": 22,
+   "lat": 43.45,
+   "lon": -120.86,
+   "recordings": 2468,
+   "pct": {
+    "earthquake": 76.1,
+    "explosion": 6.6,
+    "surface_event": 17.4
+   }
+  },
+  {
+   "key": "K7",
+   "name_id": "Oregon timur laut",
+   "stations": 12,
+   "lat": 45.21,
+   "lon": -120.52,
+   "recordings": 724,
+   "pct": {
+    "earthquake": 97.9,
+    "explosion": 2.1,
+    "surface_event": 0.0
+   }
+  },
+  {
+   "key": "K8",
+   "name_id": "Perbatasan Oregon–Idaho",
+   "stations": 7,
+   "lat": 44.48,
+   "lon": -116.74,
+   "recordings": 113,
+   "pct": {
+    "earthquake": 100.0,
+    "explosion": 0.0,
+    "surface_event": 0.0
+   }
+  },
+  {
+   "key": "lainnya",
+   "name_id": "Lainnya",
+   "stations": 10,
+   "lat": 44.73,
+   "lon": -119.24,
+   "recordings": 202,
+   "pct": {
+    "earthquake": 92.1,
+    "explosion": 7.9,
+    "surface_event": 0.0
+   }
+  },
+  {
+   "key": "terisolasi",
+   "name_id": "Terisolasi",
+   "stations": 87,
+   "lat": 45.35,
+   "lon": -121.15,
+   "recordings": 403,
+   "pct": {
+    "earthquake": 83.6,
+    "explosion": 14.6,
+    "surface_event": 1.7
+   }
+  }
+ ],
+ "network_average_pct": {
+  "earthquake": 86.7,
+  "explosion": 8.6,
+  "surface_event": 4.7
+ },
+ "region_notes": {
+  "K4": "91% ledakan terjadi pada jam kerja dan 47% di titik yang berulang, pola yang mengarah ke peledakan tambang/<em>quarry</em> (belum dikonfirmasi).",
+  "K5": "90% ledakan terjadi pada jam kerja dan 49% di titik yang berulang, pola yang mengarah ke peledakan tambang/<em>quarry</em> (belum dikonfirmasi).",
+  "K2": "35 stasiun berada dalam 30 km dari Mount St. Helens dan 12 dari Mount Hood.",
+  "K6": "14 dari 22 stasiun berada dalam 30 km dari Newberry Volcano."
+ },
+ "volcanoes": [
+  {
+   "name": "Mount Baker",
+   "lat": 48.777,
+   "lon": -121.813
+  },
+  {
+   "name": "Glacier Peak",
+   "lat": 48.112,
+   "lon": -121.113
+  },
+  {
+   "name": "Mount Rainier",
+   "lat": 46.853,
+   "lon": -121.76
+  },
+  {
+   "name": "Mount Adams",
+   "lat": 46.206,
+   "lon": -121.49
+  },
+  {
+   "name": "Mount St. Helens",
+   "lat": 46.2,
+   "lon": -122.18
+  },
+  {
+   "name": "Mount Hood",
+   "lat": 45.374,
+   "lon": -121.695
+  },
+  {
+   "name": "Mount Jefferson",
+   "lat": 44.674,
+   "lon": -121.799
+  },
+  {
+   "name": "Three Sisters",
+   "lat": 44.1,
+   "lon": -121.77
+  },
+  {
+   "name": "Newberry Volcano",
+   "lat": 43.722,
+   "lon": -121.229
+  },
+  {
+   "name": "Crater Lake (Mount Mazama)",
+   "lat": 42.93,
+   "lon": -122.12
+  },
+  {
+   "name": "Mount McLoughlin",
+   "lat": 42.445,
+   "lon": -122.315
+  }
+ ],
+ "volcano_source": "List of Cascade volcanoes (Wikipedia), coordinates as listed"
+}

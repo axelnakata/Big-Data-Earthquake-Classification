@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PNW Seismic Insights</title>
+<meta name="description" content="Dashboard hasil klasifikasi sinyal seismik dan graph analytics jaringan stasiun Pacific Northwest.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><svg width="26" height="14" viewBox="0 0 26 14" aria-hidden="true"><path d="M0 7h6l2-5 3 10 2-8 2 6 2-3h9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>PNW Seismic Insights</h1>
+  </header>
+
+  <nav class="tabs" aria-label="Insight">
+    <a href="#otomatisasi"><span class="n">01</span>Otomatisasi pemeriksaan</a>
+    <a href="#surface-event"><span class="n">02</span><span>Deteksi <em>surface event</em></span></a>
+    <a href="#wilayah"><span class="n">03</span>Pola kejadian per wilayah</a>
+    <a href="#stasiun"><span class="n">04</span>Stasiun paling sentral</a>
+  </nav>
+
+  <p id="status" class="status" role="status">Memuat data…</p>
+
+  <main id="app" hidden>
+  <!-- 01 -->
+  <section class="panel" data-panel="otomatisasi">
+    <div class="blk head"><span class="eyebrow">Insight 01 · <em>Machine Learning</em></span><h2 class="q">Seberapa banyak pemeriksaan yang bisa diambil alih model?</h2></div>
+    <div class="kpis">
+      <div class="kpi"><b class="num" id="kAuto">–</b><span>diproses otomatis</span></div>
+      <div class="kpi"><b class="num" id="kHold">–</b><span>diperiksa analis</span></div>
+      <div class="kpi"><div class="kpi-row"><b class="num" id="kOk">–</b><small class="num" id="kBad"></small></div><span>prediksi benar</span></div>
+    </div>
+    <div class="blk">
+      <div class="ctrl">
+        <label for="thr">Minimal <em>confidence level</em> untuk prediksi model</label>
+        <input id="thr" type="range" min="50" max="99" step="1" value="90">
+        <output id="thrv" for="thr" class="num mono big">90%</output>
+      </div>
+      <div class="split"><div class="auto" id="sAuto"></div><div class="hold hatch" id="sHold"></div></div>
+    </div>
+    <div class="blk">
+      <div class="row-between">
+        <h3 class="sub">Simulasi pemeriksaan dengan data asli</h3>
+        <button class="btn" id="again" type="button">Tampilkan 6 lainnya</button>
+      </div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--eq)"></i>Gempa bumi</span>
+        <span><i class="sw" style="background:var(--ex)"></i>Ledakan</span>
+        <span><i class="sw" style="background:var(--su)"></i><em>Surface event</em></span>
+        <span><i class="sw" style="background:var(--no)"></i><em>Noise</em></span>
+      </div>
+      <div class="scroll"><table class="queue">
+        <thead><tr><th scope="col">Waktu rekaman</th><th scope="col">Sinyal (120 detik)</th><th scope="col"><em>Confidence level</em> model</th><th scope="col">Keputusan</th><th scope="col">Label <em>ground truth</em></th></tr></thead>
+        <tbody id="queue"></tbody>
+      </table></div>
+    </div>
+    <div class="blk foot">
+      <p class="decide"><span class="lbl">Keputusan yang bisa diambil</span><span id="dec1"></span></p>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="panel" data-panel="surface-event" hidden>
+    <div class="blk head">
+      <span class="eyebrow">Insight 02 · <em>Graph Analytics</em> + <em>Deep Learning</em></span>
+      <h2 class="q">Bagaimana agar <em>surface event</em> tidak terlewat?</h2>
+      <p class="ctx"><em>Surface event</em> seperti longsor di sekitar gunung api memiliki getaran kecil dan sering hanya terekam 1 stasiun, berbeda dengan gempa bumi atau ledakan.</p>
+    </div>
+    <div class="blk">
+      <h3 class="sub">Pilih aturan alarm</h3>
+      <div class="seg" id="setup" role="group" aria-label="Pilih aturan alarm"></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b class="num" id="kDetect">–</b><span><em>surface event</em> terdeteksi</span></div>
+      <div class="kpi"><b class="num" id="kLost">–</b><span><em>surface event</em> terlewat</span></div>
+      <div class="kpi"><b class="num" id="kNoise">–</b><span><em>noise</em> masuk ke analis</span></div>
+    </div>
+    <div class="blk">
+      <div class="charts two">
+        <div class="chart"><h3 class="sub">Kejadian yang terdeteksi</h3><div class="hbars" id="cEvents"></div></div>
+        <div class="chart"><h3 class="sub"><em>Noise</em> yang masuk ke analis</h3><div class="hbars" id="cNoise"></div></div>
+      </div>
+    </div>
+    <div class="blk foot">
+      <p class="decide"><span class="lbl">Keputusan yang bisa diambil</span><span id="dec2"></span></p>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="panel" data-panel="wilayah" hidden>
+    <div class="blk head"><span class="eyebrow">Insight 03 · <em>Graph Analytics</em></span><h2 class="q">Pola kejadian di setiap wilayah</h2></div>
+    <div class="kpis">
+      <div class="kpi"><b class="num" id="kEx">–</b><span>ledakan di Oregon barat tengah</span></div>
+      <div class="kpi"><b class="num" id="kSu">–</b><span><em>surface event</em> di kawasan gunung api Oregon tengah</span></div>
+      <div class="kpi"><b class="num" id="kOffice">–</b><span>ledakan terjadi pada hari kerja pukul 08.00–17.00</span></div>
+    </div>
+    <div class="blk">
+      <div class="maprow">
+        <div class="mapcol">
+          <svg class="map" id="regionMap" role="group" aria-label="Peta kelompok stasiun, gunung api, dan lokasi ledakan"></svg>
+          <div class="legend">
+            <span><i class="sw" style="background:var(--eq)"></i>Gempa bumi</span>
+            <span><i class="sw" style="background:var(--ex)"></i>Ledakan</span>
+            <span><i class="sw" style="background:var(--su)"></i><em>Surface event</em></span>
+            <span><i class="sw round dotmark" style="background:var(--ex)"></i>Lokasi ledakan</span>
+            <span><svg width="11" height="10" viewBox="0 0 10 9" aria-hidden="true"><path d="M5 0L10 9H0Z" fill="var(--volc)"/></svg>Gunung api</span>
+          </div>
+          <p class="cap muted">Pilih cincin untuk melihat detail kejadian di wilayah.</p>
+        </div>
+        <div class="side">
+          <label class="selwrap"><span class="cap">Pilih wilayah</span><select id="groupSel"></select></label>
+          <div id="regionDetail"></div>
+        </div>
+      </div>
+    </div>
+    <div class="blk foot">
+      <p class="decide"><span class="lbl">Keputusan yang bisa diambil</span><span>Dari sini terlihat tiap wilayah punya pola sendiri: Oregon barat didominasi ledakan pada jam kerja, sedangkan kawasan gunung api lebih sering mencatat <em>surface event</em>. Fokus pemeriksaan bisa disesuaikan dengan pola wilayahnya.</span></p>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="panel" data-panel="stasiun" hidden>
+    <div class="blk head">
+      <span class="eyebrow">Insight 04 · <em>Graph Analytics</em></span>
+      <h2 class="q">Stasiun mana yang paling sentral bagi jaringan?</h2>
+      <p class="ctx">Stasiun sentral adalah stasiun yang terhubung dengan banyak stasiun lain yang juga sentral (<em>PageRank</em>).</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b class="num" id="kTop">–</b><span>stasiun sentral</span></div>
+      <div class="kpi"><b class="num" id="kAll">–</b><span>total stasiun dalam jaringan</span></div>
+      <div class="kpi"><b class="num" id="kNb">–</b><span>stasiun yang terhubung dengan stasiun peringkat 1</span></div>
+    </div>
+    <div class="blk">
+      <div class="maprow">
+        <div class="mapcol">
+          <svg class="map" id="stMap" role="group" aria-label="Peta stasiun dalam jaringan"></svg>
+          <div class="row-between">
+            <div class="legend" id="stLegend"></div>
+            <label class="check"><input type="checkbox" id="hlToggle" checked> <span><em>Highlight</em> 10 stasiun sentral</span></label>
+          </div>
+        </div>
+        <div class="side">
+          <h3 class="sub">10 stasiun paling sentral</h3>
+          <div class="ranklist" id="rankList"></div>
+          <p class="note" id="stDetail"></p>
+        </div>
+      </div>
+    </div>
+    <div class="blk foot">
+      <p class="decide"><span class="lbl">Keputusan yang bisa diambil</span><span id="dec4"></span></p>
+    </div>
+  </section>
+  </main>
+
+  <footer>Data: PNW-ML (Ni dkk., 2023), lisensi MIT · Processed by <a href="https://github.com/axelnakata/Big-Data-Earthquake-Classification">Axel Nino Nakata</a></footer>
+</div>
+<div id="tip" hidden></div>
+<script src="assets/app.js"></script>
+</body>
+</html>
