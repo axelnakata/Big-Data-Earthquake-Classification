@@ -82,7 +82,7 @@ Setiap waveform berisi 3 komponen (E, N, Z) dengan 100 sampel per detik. Metadat
 
 **<https://axelnakata.github.io/Big-Data-Earthquake-Classification/>**
 
-Dashboard menyajikan hasil analisis untuk pengambil keputusan. Situsnya statis dan membaca file ringkas di `docs/data/` (3,3 MB) yang diekspor notebook `13_dashboard_export` dari HDFS.
+Dashboard berisi hasil analisis untuk pengambil keputusan bagi stakeholders.
 
 | Tab | Isi |
 |---|---|
@@ -120,7 +120,7 @@ outputs/         bukti hasil: tabel, gambar, model (cnn_best.pt), log HDFS — p
 | `12_graph_analytics` | Graph G1 & G2 dengan GraphFrames | 6 |
 | `13_dashboard_export` | Ekspor dan validasi data dashboard | 7 |
 
-## Reproduksi
+## Re-run Code
 
 Untuk menjalankan ulang pipeline, dataset PNW-ML perlu dilakukan download terlebih dahulu dan tersedia ruang disk ±180 GB (raw 90 GB + processed 71 GB + data ML 14 GB). Seluruh eksperimen dijalankan pada macOS (10 core CPU, RAM 24 GB) tanpa GPU.
 
