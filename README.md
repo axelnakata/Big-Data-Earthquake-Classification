@@ -91,6 +91,8 @@ Dashboard menyajikan hasil analisis untuk pengambil keputusan. Situsnya statis d
 | Pola kejadian per wilayah | Komposisi kejadian tiap kelompok stasiun, lokasi ledakan, dan gunung api |
 | Stasiun paling sentral | 10 stasiun dengan PageRank tertinggi di antara 642 stasiun |
 
+![Tampilan keempat tab dashboard](outputs/figures/readme_dashboard.png)
+
 ## Struktur repo
 
 ```
