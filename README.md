@@ -78,12 +78,26 @@ Setiap waveform berisi 3 komponen (E, N, Z) dengan 100 sampel per detik. Metadat
 
 ![Peta kelompok stasiun hasil label propagation](outputs/figures/a2_graph_communities_map_v2.png)
 
+## Dashboard
+
+**<https://axelnakata.github.io/Big-Data-Earthquake-Classification/>**
+
+Dashboard menyajikan hasil analisis untuk pengambil keputusan. Situsnya statis dan membaca file ringkas di `docs/data/` (3,3 MB) yang diekspor notebook `13_dashboard_export` dari HDFS.
+
+| Tab | Isi |
+|---|---|
+| Otomatisasi pemeriksaan | Porsi rekaman yang bisa diproses otomatis pada tiap batas *confidence level* model |
+| Deteksi *surface event* | Perbandingan aturan alarm: 1 stasiun, minimal 2 stasiun, dan 1 stasiun + model *deep learning* |
+| Pola kejadian per wilayah | Komposisi kejadian tiap kelompok stasiun, lokasi ledakan, dan gunung api |
+| Stasiun paling sentral | 10 stasiun dengan PageRank tertinggi di antara 642 stasiun |
+
 ## Struktur repo
 
 ```
 config/hadoop/   konfigurasi HDFS yang dipakai (core-site, hdfs-site, hadoop-env)
 src/             kode pipeline: ingest ke HDFS, konversi HDF5→Parquet, preprocessing, CNN, training
-notebooks/       01–12, dijalankan berurutan (tabel di bawah)
+notebooks/       01–13, dijalankan berurutan (tabel di bawah)
+docs/            dashboard (situs statis untuk GitHub Pages)
 scripts/         pembuat gambar & angka untuk laporan
 outputs/         bukti hasil: tabel, gambar, model (cnn_best.pt), log HDFS — peta isi di outputs/README.md
 ```
@@ -102,6 +116,7 @@ outputs/         bukti hasil: tabel, gambar, model (cnn_best.pt), log HDFS — p
 | `10_cnn_training` | Arsitektur, training, kurva belajar | 5.3–5.4 |
 | `11_evaluation_analysis` | Prediksi dengan Spark, metrik, analisis | 5.5–5.6 |
 | `12_graph_analytics` | Graph G1 & G2 dengan GraphFrames | 6 |
+| `13_dashboard_export` | Ekspor dan validasi data dashboard | 7 |
 
 ## Reproduksi
 

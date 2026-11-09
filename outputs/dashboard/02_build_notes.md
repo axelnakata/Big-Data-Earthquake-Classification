@@ -10,7 +10,7 @@ Berisi fakta saja. Kalimat laporan ditulis pemilik.
 | Tab | Sumber | Pertanyaan | Keputusan |
 |---|---|---|---|
 | 01 Otomatisasi pemeriksaan | ML | Berapa banyak pemeriksaan bisa diambil alih model? | Mengatur batas *confidence level*: naik berarti lebih sedikit salah, turun berarti beban analis lebih ringan |
-| 02 Deteksi *surface event* | Graph + *deep learning* | Bagaimana agar *surface event* tidak terlewat? | Alarm 1 stasiun + model *deep learning*: 4,4× lebih banyak terdeteksi daripada aturan 2 stasiun, *noise* berkurang 92,9% |
+| 02 Deteksi *surface event* | Graph + *deep learning* | Bagaimana agar *surface event* tidak terlewat? | Alarm 1 stasiun + model *deep learning*: 4,4× lebih banyak terdeteksi daripada aturan 2 stasiun |
 | 03 Pola kejadian per wilayah | Graph | Apa pola kejadian tiap wilayah? | Fokus pemeriksaan disesuaikan dengan pola wilayah |
 | 04 Stasiun paling sentral | Graph | Stasiun mana yang paling sentral? | Anggaran pemeliharaan dan daya cadangan didahulukan untuk 10 stasiun |
 
@@ -24,7 +24,7 @@ Alasan (detail di PRD §4):
 - Bisa diulang: notebook 13 dapat dijalankan ulang dari HDFS dan memvalidasi dirinya sendiri.
 - Lisensi: PNW-ML (MIT) dicantumkan di *footer*. Sumber peta dasar us-atlas (ISC) dicatat di `summary.json → provenance`.
 
-Revisi setelah tinjauan pemilik (9 Nov 2026): dashboard diubah menjadi versi untuk *stakeholder*. Teks penjelasan, baris sumber data, dan asumsi aturan alarm dihapus. Tab 02 menjadi interaktif: pengguna memilih satu dari tiga aturan alarm, lalu KPI, grafik, dan kalimat keputusan menyesuaikan. Angka *noise* untuk aturan 2 stasiun ditampilkan "tidak terukur" karena data tidak mengukurnya.
+Revisi setelah tinjauan pemilik (9 Nov 2026): dashboard diubah menjadi versi untuk *stakeholder*. Teks penjelasan, baris sumber data, dan asumsi aturan alarm dihapus. Tab 02 menjadi interaktif: pengguna memilih satu dari tiga aturan alarm, lalu KPI, grafik, dan kalimat keputusan menyesuaikan. Angka *noise* untuk aturan 2 stasiun ditampilkan "–" karena data tidak mengukurnya.
 
 ## 3. Kontrak data
 
@@ -54,7 +54,7 @@ Daftar lengkap: `01_export_report.md`. 58 dari 59 pemeriksaan PASS. Satu FAIL bu
 Perbedaan lain terhadap PRD:
 - K6 berjarak ±42 km dari Newberry Volcano. Kalimat "dekat Three Sisters" dibuang karena pusat K6 berjarak 101 km dan tidak ada stasiun K6 dalam 30 km.
 - Kelompok ledakan terpadat berada di British Columbia, 24,3% ledakan ada di utara 49°LU, jadi peta diperluas sampai ke sana.
-- Ledakan di Oregon barat: 1.218 kejadian, 91,8% pada jam kerja, 44,8% di titik berulang. Pola ini sesuai dengan peledakan tambang atau *quarry*, tetapi datanya tidak mencatat sumber ledakan, sehingga di dashboard ditulis belum dikonfirmasi.
+- Ledakan di Oregon barat: 1.218 kejadian, 91,8% pada jam kerja, 44,8% di titik berulang. Pola ini mengarah ke peledakan tambang atau *quarry*. Datanya tidak mencatat sumber ledakan, jadi kesimpulan ini berasal dari pola waktu dan lokasi yang berulang.
 
 ## 5. Alat dan versi
 - Python 3.11.15, PySpark 3.5.9, GraphFrames 0.12.3, Hadoop 3.4.3

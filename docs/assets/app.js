@@ -184,7 +184,7 @@ function initSurface(pred, summary) {
       decision: `Jika alarm memerlukan minimal 2 stasiun, ${pct(100 - multi('surface_event'))} <em>surface event</em> terlewat karena hanya terekam 1 stasiun.` },
     { label: '1 stasiun + model <em>deep learning</em>', detect: k => passed(byLabel(k)), noise: noisePass,
       detectTip: k => k === 'surface_event' ? `Dari rekaman yang hanya terekam 1 stasiun, ${pct(passed(oneRec))} tetap terdeteksi` : perRec(k), noiseTip: perRec('noise'),
-      decision: `Jika alarm 1 stasiun digabungkan dengan model <em>deep learning</em>, <em>surface event</em> yang terdeteksi ${fm[1].format(dlSurface / multi('surface_event'))}× lebih banyak daripada aturan minimal 2 stasiun, dan <em>noise</em> yang harus diperiksa analis berkurang ${pct(100 - noisePass)}.` },
+      decision: `Jika alarm 1 stasiun digabungkan dengan model <em>deep learning</em>, <em>surface event</em> yang terdeteksi ${fm[1].format(dlSurface / multi('surface_event'))}× lebih banyak daripada aturan minimal 2 stasiun.` },
   ];
 
   const seg = $('#setup'), box = $('#cEvents'), noiseBox = $('#cNoise');
@@ -193,7 +193,7 @@ function initSurface(pred, summary) {
   box.innerHTML = barRows(ORDER.map(k => ({ label: NAME[k], v: 0, color: COL[k], on: k === 'surface_event' })));
   noiseBox.innerHTML = barRows([{ label: NAME.noise, v: 0, color: COL.noise }]);
   const setBar = (row, v, tip) => {
-    row.querySelector('.hv').textContent = v === null ? 'Tidak terukur' : pct(v);
+    row.querySelector('.hv').textContent = v === null ? '–' : pct(v);
     row.querySelector('.ht div').style.width = (v || 0) + '%';
     row.dataset.tip = tip;
   };

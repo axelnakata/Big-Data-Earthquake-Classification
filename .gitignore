@@ -18,6 +18,8 @@ derby.log
 *.h5
 *.csv
 *.parquet
+# Exception: the small published dashboard files only
+!docs/data/*.csv
 
 # OS
 .DS_Store

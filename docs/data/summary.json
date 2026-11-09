@@ -1,7 +1,7 @@
 {
  "provenance": {
-  "generated_at": "2026-11-09T12:20:39Z",
-  "git_commit": "e75fa56",
+  "generated_at": "2026-11-09T12:41:28Z",
+  "git_commit": "11ce3b1",
   "files": {
    "predictions.csv": {
     "source": [
@@ -235,8 +235,8 @@
   "surface_event": 4.7
  },
  "region_notes": {
-  "K4": "91% ledakan terjadi pada jam kerja dan 47% di titik yang berulang, pola yang mengarah ke peledakan tambang/<em>quarry</em> (belum dikonfirmasi).",
-  "K5": "90% ledakan terjadi pada jam kerja dan 49% di titik yang berulang, pola yang mengarah ke peledakan tambang/<em>quarry</em> (belum dikonfirmasi).",
+  "K4": "91% ledakan terjadi pada jam kerja dan 47% di titik yang berulang, pola yang mengarah ke peledakan tambang/<em>quarry</em>.",
+  "K5": "90% ledakan terjadi pada jam kerja dan 49% di titik yang berulang, pola yang mengarah ke peledakan tambang/<em>quarry</em>.",
   "K2": "35 stasiun berada dalam 30 km dari Mount St. Helens dan 12 dari Mount Hood.",
   "K6": "14 dari 22 stasiun berada dalam 30 km dari Newberry Volcano."
  },

@@ -1,6 +1,6 @@
 # Phase 1 — Export report
 
-Generated 2026-11-09T12:20:39Z by `notebooks/13_dashboard_export.ipynb` (git e75fa56).
+Generated 2026-11-09T12:41:28Z by `notebooks/13_dashboard_export.ipynb` (git 11ce3b1).
 
 ## Files in `docs/data/`
 
@@ -10,7 +10,7 @@ Generated 2026-11-09T12:20:39Z by `notebooks/13_dashboard_export.ipynb` (git e75
 | predictions.csv       | 2794751 |  35341 | /datalake/ml/predictions (split=test); /datalake/processed/metadata; /datalake/graph/g1_edges                  |
 | states.json           |   16022 |      3 | npm us-atlas@3.0.1 states-10m.json (lisensi ISC), dari US Census Bureau cartographic boundary files 2017       |
 | stations.csv          |   38648 |    642 | /datalake/graph/g1_edges; /datalake/graph/g2_vertices; /datalake/graph/g2_edges; /datalake/dashboard/lpa_rerun |
-| summary.json          |    5613 |      1 | /datalake/graph/g1_edges; /datalake/processed/metadata; /datalake/dashboard/lpa_rerun                          |
+| summary.json          |    5571 |      1 | /datalake/graph/g1_edges; /datalake/processed/metadata; /datalake/dashboard/lpa_rerun                          |
 | waveforms_sample.json |  156828 |     48 | /datalake/ml/waveforms_z150s (split=test)                                                                      |
 
 Total: 3.32 MB (limit 10 MB).
@@ -91,7 +91,7 @@ Densest 0.25° cells:
 ## What the explosion layer shows
 
 - Western Oregon box (42–45.2°N, 124.5–121.8°W): 1,218 explosions, 91.8% in weekday working hours, 44.8% at repeated sites. They spread along the western valleys and repeat at many sites. There is no single dominant point.
-- K4 and K5 notes: see `summary.json → region_notes`. The wording says "possible quarry blasting, not confirmed": the pattern fits, but the data has no blast-source field.
+- K4 and K5 notes: see `summary.json → region_notes`. The wording says the pattern points to quarry blasting; the data has no blast-source field, so this is an inference from timing and repeated locations.
 - The densest cluster overall is outside the US: 1,551 explosions (24.3%) lie north of 49°N, mostly near 49.4°N, 120.5°W (British Columbia). K1 stations record them. The map extends north of the border to show this.
 - §7.5 says K6 is "near the Three Sisters". Not supported: the K6 centre is 101 km away and 0 of 22 stations are within 30 km. Only the Newberry Volcano note is used.
 
